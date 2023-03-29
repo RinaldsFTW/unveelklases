@@ -1,0 +1,85 @@
+class Wizard:
+    count = 0
+
+    def init(self, name, energy):
+        Wizard.count += 1
+        self.name = name
+        self.energy = energy
+        self.health = 100
+
+    def introduce(self):
+        print(f"Hey, my name is {self.name}.")
+
+    def status(self):
+        print(f"Name: {self.name} Energy: {self.energy} Health: {self.health}")
+
+    def heal(self, target):
+        if self.energy < 100:
+            print("Not enough energy to heal!")
+            return
+
+        self.energy -= 100
+        target.health = 100
+
+class Human:
+    count = 0
+
+    def init(self, name):
+        Human.count += 1
+        self.name = name
+        self.energy = 100
+        self.health = 100
+
+    def introduce(self):
+        print(f"Hey, my name is {self.name}.")
+
+    def status(self):
+        print(f"Name: {self.name} Energy: {self.energy} Health: {self.health}")
+
+class Dragon:
+    count = 0
+
+    def init(self, name, energy):
+        Dragon.count += 1
+        self.name = name
+        self.energy = energy
+        self.health = 100
+
+    def introduce(self):
+        print(f"Hey, my name is {self.name}.")
+
+    def status(self):
+        print(f"Name: {self.name} Energy: {self.energy} Health: {self.health}")
+
+    def attack(self, target):
+        if self.energy < 50:
+            print("Not enough energy!")
+            return
+
+        self.energy -= 50
+        target.health -= 30
+
+
+wizards = []
+humans = []
+dragons = []
+
+wizards.append(Wizard("Gandalf", 500))
+wizards.append(Wizard("Saaraman", 500))
+humans.append(Human("Harry"))
+dragons.append(Dragon("Smaug", 120))
+
+wizards[0].status()
+wizards[1].status()
+humans[0].status()
+dragons[0].status()
+
+for i in range(3):
+    dragons[0].attack(humans[0])
+    dragons[0].status()
+    humans[0].status()
+
+wizards[0].heal(humans[0])
+humans[0].status()
+
+print(f"Wizards created: {Wizard.count}")
